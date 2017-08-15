@@ -42,9 +42,16 @@ public class LessonDAO extends DAO {
         printLog("Lesson successfully inserted");
     }
 
+    public void deleteLesson(Lesson lesson){
+        command = "DELETE FROM " + tableName + " WHERE id=" + lesson.getId() + ";";
+        printLog("Delete lesson [id: " + lesson.getId() + ", user: " + lesson.getUser_id() + "]");
+        printLog(command);
+        sqldb.execSQL(command);
+    }
+
     public ArrayList<Lesson> getLessonArray(String user_id){
-        command = "SELECT * FROM " + tableName + " WHERE 1;";
-        printLog("Select all lessons for id: " + "all");
+        command = "SELECT * FROM " + tableName + " WHERE user_id=" + user_id + ";";
+        printLog("Select all lessons for id: " + user_id);
         printLog(command);
         Cursor c = sqldb.rawQuery(command,null);
         printLog("Cursor count: " + c.getCount());

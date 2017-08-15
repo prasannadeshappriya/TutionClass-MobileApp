@@ -26,7 +26,7 @@ import static com.example.prasanna.tutionclass.Constants.printLog;
  * Created by prasanna on 8/14/17.
  */
 
-public class AddLessonFragment extends Fragment {
+public class AddEditLessonFragment extends Fragment {
     private EditText etName;
     private DatePicker dpPicker;
     private EditText etComments;
@@ -37,11 +37,18 @@ public class AddLessonFragment extends Fragment {
     private String email;
     private String user_name;
     private String user_id;
+    private Lesson lesson;
+    private boolean isEditData;
 
     public void setUserDetails(String email, String user_name, String user_id) {
         this.email = email;
         this.user_name = user_name;
         this.user_id = user_id;
+    }
+
+    public void setIsEditFlag(boolean flag, Lesson lesson){
+        isEditData = flag;
+        this.lesson = lesson;
     }
 
     @Nullable
@@ -51,11 +58,28 @@ public class AddLessonFragment extends Fragment {
         //Initialize XML variables
         init(view);
 
+        if(isEditData){
+            etComments.setText(lesson.getComments());
+            etComments.setEnabled(false);
+            String date[] = lesson.getDate().split("-");
+            dpPicker.init(
+                    Integer.parseInt(date[0]),
+                    Integer.parseInt(date[1]),
+                    Integer.parseInt(date[2]),null);
+            dpPicker.setEnabled(false);
+            etGrade.setText(lesson.getGrade());
+            etGrade.setEnabled(false);
+            etName.setText(lesson.getName());
+            etName.setEnabled(false);
+            etStuCount.setText(String.valueOf(lesson.getStudent_count()));
+            etStuCount.setEnabled(false);
+        }
+
         btnAddLesson.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(validate()){addLesson();}
+                        addLesson();
                     }
                 }
         );
@@ -64,27 +88,36 @@ public class AddLessonFragment extends Fragment {
     }
 
     private void addLesson() {
-        String lesson_name = etName.getText().toString();
-        String date = String.valueOf(dpPicker.getYear()) + "-" +
-                String.valueOf(dpPicker.getMonth()) + "-" +
-                String.valueOf(dpPicker.getDayOfMonth());
-        String comment = " ";
-        if(!etComments.getText().toString().replace(" ","").equals("")){
-            comment = etComments.getText().toString();
+        if(validate()) {
+            String lesson_name = etName.getText().toString();
+            String date = String.valueOf(dpPicker.getYear()) + "-" +
+                    String.valueOf(dpPicker.getMonth()) + "-" +
+                    String.valueOf(dpPicker.getDayOfMonth());
+            String comment = " ";
+            if (!etComments.getText().toString().replace(" ", "").equals("")) {
+                comment = etComments.getText().toString();
+            }
+
+            int student_count = Integer.parseInt(etStuCount.getText().toString());
+            String grade = etGrade.getText().toString();
+
+            if(isEditData){
+                //Edit exist data
+                lesson_dao.deleteLesson(lesson);
+                showHomeFragment();
+            }else {
+                //Insert new data
+                lesson_dao.addLesson(new Lesson(
+                        Long.parseLong(user_id),
+                        lesson_name,
+                        comment,
+                        grade,
+                        student_count,
+                        date
+                ));
+                showHomeFragment();
+            }
         }
-
-        int student_count = Integer.parseInt(etStuCount.getText().toString());
-        String grade = etGrade.getText().toString();
-
-        lesson_dao.addLesson(new Lesson(
-                Long.parseLong(user_id),
-                lesson_name,
-                comment,
-                grade,
-                student_count,
-                date
-        ));
-        showHomeFragment();
     }
 
     private void init(View view) {
@@ -98,6 +131,8 @@ public class AddLessonFragment extends Fragment {
         etStuCount = (EditText) view.findViewById(R.id.etStuCount);
         etGrade = (EditText) view.findViewById(R.id.etGrade);
         btnAddLesson = (Button) view.findViewById(R.id.btnAddLesson);
+        if(isEditData){btnAddLesson.setText("Delete");}
+        else{btnAddLesson.setText("Add");}
     }
 
     public void showToastError(String message){

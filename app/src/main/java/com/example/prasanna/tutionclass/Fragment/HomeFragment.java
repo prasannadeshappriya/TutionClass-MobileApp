@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -47,20 +48,32 @@ public class HomeFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        openCreateEventWindow();
+                        openCreateEventWindow(false, null);
+                    }
+                }
+        );
+
+        lstLessons.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Lesson lesson = (Lesson) adapterView.getItemAtPosition(i);
+                        openCreateEventWindow(true, lesson);
+                        return false;
                     }
                 }
         );
         return view;
     }
 
-    private void openCreateEventWindow() {
-        AddLessonFragment addLessonFragment = new AddLessonFragment();
-        addLessonFragment.setUserDetails(email, user_name, user_id);
+    private void openCreateEventWindow(boolean isEdit, Lesson lesson) {
+        AddEditLessonFragment addEditLessonFragment = new AddEditLessonFragment();
+        addEditLessonFragment.setUserDetails(email, user_name, user_id);
+        addEditLessonFragment.setIsEditFlag(isEdit, lesson);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(android.R.anim.slide_in_left,
                 android.R.anim.slide_out_right);
-        transaction.replace(R.id.frmMain, addLessonFragment);
+        transaction.replace(R.id.frmMain, addEditLessonFragment);
         transaction.commit();
     }
 

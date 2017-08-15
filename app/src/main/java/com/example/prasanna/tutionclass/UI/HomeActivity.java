@@ -139,6 +139,7 @@ public class HomeActivity extends AppCompatActivity
 
     public void showFeedbackFragment(){
         FeedbackFragment feedbackFragment = new FeedbackFragment();
+        feedbackFragment.setUserDetails(email, user_name, user_id);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frmMain, feedbackFragment);
         transaction.setCustomAnimations(android.R.anim.slide_in_left,
