@@ -1,6 +1,8 @@
 package com.example.prasanna.tutionclass.UI;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -59,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         );
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void initAutoLogin() {
         User user = user_dao.getLoginUser();
         if(user!=null){
@@ -66,12 +69,14 @@ public class LoginActivity extends AppCompatActivity {
             i.putExtra("user_email", user.getEmail());
             i.putExtra("user_name", user.getName());
             i.putExtra("user_id", String.valueOf(user.getId()));
+            finishAffinity();
             startActivity(i);
             overridePendingTransition(android.R.anim.slide_in_left,
                     android.R.anim.slide_out_right);
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void signIn(){
         if(validate()){
             String email = input_email.getText().toString();
@@ -93,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             i.putExtra("user_email", user.getEmail());
             i.putExtra("user_name", user.getName());
             i.putExtra("user_id", String.valueOf(user.getId()));
+            finishAffinity();
             startActivity(i);
             overridePendingTransition(android.R.anim.slide_in_left,
                     android.R.anim.slide_out_right);
