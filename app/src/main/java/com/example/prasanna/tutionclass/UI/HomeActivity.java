@@ -1,10 +1,12 @@
 package com.example.prasanna.tutionclass.UI;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -113,7 +115,14 @@ public class HomeActivity extends AppCompatActivity
             showFeedbackFragment();
             toolbar.setTitle("Feedback");
         }else if(id==R.id.nav_about){
-
+            new AlertDialog.Builder(this)
+                    .setTitle("About")
+                    .setMessage("Version 1.0")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {}
+                    }).show();
         }else if(id == R.id.nav_signout) {
             user_dao.setLoginStatusFlag(false, email);
             Intent i = new Intent(this, LoginActivity.class);

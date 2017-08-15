@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.example.prasanna.tutionclass.DAO.FeedbackDAO;
+import com.example.prasanna.tutionclass.Models.Feedback;
 import com.example.prasanna.tutionclass.Models.Lesson;
 import com.example.prasanna.tutionclass.R;
 
@@ -28,6 +30,8 @@ public class FeedbackShowFragment extends Fragment {
     private String user_name;
     private String user_id;
     private Lesson lesson;
+
+    private FeedbackDAO feedback_dao;
 
     public void setUserDetails(String email, String user_name, String user_id) {
         this.email = email;
@@ -76,21 +80,22 @@ public class FeedbackShowFragment extends Fragment {
     }
 
     private void sadVotePressed() {
-        printLog("Sad");
+        feedback_dao.addFeedback(new Feedback(lesson.getId(),"3",lesson.getUser_id()));
     }
 
     private void nutralVotePressed() {
-        printLog("Neutral");
+        feedback_dao.addFeedback(new Feedback(lesson.getId(),"2",lesson.getUser_id()));
     }
 
     private void happyVotePressed() {
-        printLog("Happy");
+        feedback_dao.addFeedback(new Feedback(lesson.getId(),"1",lesson.getUser_id()));
     }
 
     private void init(View view) {
         btnHappyVote = (ImageButton) view.findViewById(R.id.btnHappyVote);
         btnNutralVote = (ImageButton) view.findViewById(R.id.btnNutralVote);
         btnSadVote = (ImageButton) view.findViewById(R.id.btnSadVote);
+        feedback_dao = new FeedbackDAO(getContext());
     }
 
     @Override

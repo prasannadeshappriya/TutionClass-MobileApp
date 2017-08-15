@@ -51,6 +51,13 @@
                         android:id="@+id/tvHappyStatus"
                         android:layout_centerHorizontal="true"
                         android:text="12/40"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvHappyStatus"
+                        android:id="@+id/tvHappyPercentage"
+                        android:layout_centerHorizontal="true"
+                        android:text="40%"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -68,6 +75,13 @@
                         android:id="@+id/tvNutralStatus"
                         android:layout_centerHorizontal="true"
                         android:text="12/40"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvNutralStatus"
+                        android:id="@+id/tvNutralPercentage"
+                        android:layout_centerHorizontal="true"
+                        android:text="20%"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -85,6 +99,13 @@
                         android:id="@+id/tvBadStatus"
                         android:layout_centerHorizontal="true"
                         android:text="12/40"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvBadStatus"
+                        android:id="@+id/tvBadPercentage"
+                        android:layout_centerHorizontal="true"
+                        android:text="52%"/>
                 </RelativeLayout>
             </LinearLayout>
 

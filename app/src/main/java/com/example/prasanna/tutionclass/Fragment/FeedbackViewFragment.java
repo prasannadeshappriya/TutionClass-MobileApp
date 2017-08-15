@@ -11,8 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.prasanna.tutionclass.DAO.FeedbackDAO;
+import com.example.prasanna.tutionclass.Models.Feedback;
 import com.example.prasanna.tutionclass.Models.Lesson;
 import com.example.prasanna.tutionclass.R;
+
+import java.util.ArrayList;
+
+import static java.lang.Math.round;
 
 /**
  * Created by prasanna_d on 8/15/2017.
@@ -31,11 +37,16 @@ public class FeedbackViewFragment extends Fragment {
     private TextView tvFedComments;
     private TextView tvFedNumDates;
     private TextView tvFedGrade;
+    private TextView tvBadPercentage;
+    private TextView tvNutralPercentage;
+    private TextView tvHappyPercentage;
 
     private String email;
     private String user_name;
     private String user_id;
     private Lesson lesson;
+
+    private FeedbackDAO feedback_dao;
 
     public void setUserDetails(String email, String user_name, String user_id) {
         this.email = email;
@@ -76,8 +87,72 @@ public class FeedbackViewFragment extends Fragment {
                     }
                 }
         );
+        btnReset.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        reset();
+                    }
+                }
+        );
+
+        ArrayList<Feedback> arrFeedback = feedback_dao.getFeedbackArray(lesson);
+        int happy=0, neutral=0, sad=0;
+        if(!arrFeedback.isEmpty()){
+            for(int i=0; i<arrFeedback.size(); i++){
+                Feedback feedback = arrFeedback.get(i);
+                switch (feedback.getFlag()) {
+                    case "1":
+                        happy++;break;
+                    case "2":
+                        neutral++;break;
+                    case "3":
+                        sad++;break;
+                }
+            }
+        }
+        int total = arrFeedback.size();
+        tvTotalVotes.setText("Total Votes: " + total);
+        tvHappyStatus.setText(happy + "/" + total);
+        tvNutralStatus.setText(neutral + "/" + total);
+        tvBadStatus.setText(sad + "/" + total);
+
+        tvNutralPercentage.setText("0%");
+        tvHappyPercentage.setText("0%");
+        tvBadPercentage.setText("0%");
+
+        double neutralValue = (neutral/(double)total)*100;
+        double happyValue = (happy/(double)total)*100;
+        double sadValue = (sad/(double)total)*100;
+
+        if(!Double.isNaN(neutralValue)) {
+            tvNutralPercentage.setText(
+                    String.format("%.0f", neutralValue) + "%"
+            );
+        }
+        if(!Double.isNaN(happyValue)) {
+            tvHappyPercentage.setText(
+                    String.format("%.0f", happyValue) + "%"
+            );
+        }
+        if(!Double.isNaN(sadValue)) {
+            tvBadPercentage.setText(
+                    String.format("%.0f", sadValue) + "%"
+            );
+        }
 
         return view;
+    }
+
+    private void reset() {
+        feedback_dao.deleteFeedback(lesson);
+        tvTotalVotes.setText("Total Votes: 0");
+        tvHappyStatus.setText("0/0");
+        tvNutralStatus.setText("0/0");
+        tvBadStatus.setText("0/0");
+        tvNutralPercentage.setText("0%");
+        tvHappyPercentage.setText("0%");
+        tvBadPercentage.setText("0%");
     }
 
     private void startVote() {
@@ -104,6 +179,10 @@ public class FeedbackViewFragment extends Fragment {
         tvFedComments= (TextView)view.findViewById(R.id.tvFedComments);
         tvFedNumDates= (TextView)view.findViewById(R.id.tvFedNumDates);
         tvFedGrade= (TextView)view.findViewById(R.id.tvFedGrade);
+        feedback_dao = new FeedbackDAO(getContext());
+        tvBadPercentage = (TextView)view.findViewById(R.id.tvBadPercentage);
+        tvHappyPercentage = (TextView)view.findViewById(R.id.tvHappyPercentage);
+        tvNutralPercentage = (TextView)view.findViewById(R.id.tvNutralPercentage);
     }
 
     @Override
