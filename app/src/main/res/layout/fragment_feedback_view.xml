@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dip"
+    android:paddingRight="10dip"
+    android:paddingLeft="10dip"
+    android:paddingBottom="10dip">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dip"
+            android:paddingRight="10dip"
+            android:paddingLeft="10dip"
+            android:paddingBottom="10dip"
+            android:background="@drawable/frame_border">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTotalVotes"
+                android:text="Total Votes: 15"/>
+
+            <LinearLayout
+                android:layout_marginTop="5dip"
+                android:id="@+id/Layout1"
+                android:layout_below="@+id/tvTotalVotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dip"
+                        android:layout_height="100dip"
+                        android:id="@+id/btnHappy"
+                        android:src="@drawable/happy"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btnHappy"
+                        android:id="@+id/tvHappyStatus"
+                        android:layout_centerHorizontal="true"
+                        android:text="12/40"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dip"
+                        android:layout_height="100dip"
+                        android:id="@+id/btnNutral"
+                        android:src="@drawable/neutral"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btnNutral"
+                        android:id="@+id/tvNutralStatus"
+                        android:layout_centerHorizontal="true"
+                        android:text="12/40"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dip"
+                        android:layout_height="100dip"
+                        android:id="@+id/btnBad"
+                        android:src="@drawable/sad"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btnBad"
+                        android:id="@+id/tvBadStatus"
+                        android:layout_centerHorizontal="true"
+                        android:text="12/40"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_below="@+id/Layout1"
+                android:layout_marginTop="10dip"
+                android:id="@+id/vw1"
+                android:layout_height="2dp"
+                android:background="#c0c0c0"/>
+
+            <Button
+                android:id="@+id/btnReset"
+                android:text="Reset"
+                android:layout_centerHorizontal="true"
+                android:layout_width="150dip"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vw1"/>
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_centerHorizontal="true"
+                android:text="Start"
+                android:layout_width="150dip"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnReset"/>
+            <Button
+                android:id="@+id/btnViewGraph"
+                android:layout_centerHorizontal="true"
+                android:text="Graphical View"
+                android:layout_width="150dip"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnStart"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dip"
+            android:paddingTop="15dip"
+            android:paddingBottom="15dip"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_border">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name: Mathematics"
+                android:id="@+id/tvFedName"
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvFedName"
+                android:text="Date: 2017-August-17"
+                android:id="@+id/tvFedDate"
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvFedDate"
+                android:text="Comments: this is the final class"
+                android:id="@+id/tvFedComments"
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvFedComments"
+                android:text="Number of Students: 24"
+                android:id="@+id/tvFedNumDates"
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvFedNumDates"
+                android:text="Grade: 6B"
+                android:id="@+id/tvFedGrade"
+                android:textAlignment="center"/>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
