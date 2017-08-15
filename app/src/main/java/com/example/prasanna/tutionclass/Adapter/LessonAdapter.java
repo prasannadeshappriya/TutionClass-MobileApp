@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.prasanna.tutionclass.Constants;
 import com.example.prasanna.tutionclass.Models.Lesson;
 import com.example.prasanna.tutionclass.R;
 
@@ -49,10 +51,15 @@ public class LessonAdapter extends BaseAdapter {
         TextView tvDate = (TextView)view.findViewById(R.id.tvDate);
 
         Lesson lesson = arrLessons.get(position);
+        String dateArr[] = lesson.getDate().split("-");
+        String date = dateArr[0] + "-" +
+                Constants.MONTH_LIST.get(Integer.parseInt(dateArr[1])) + "-" +
+                dateArr[2];
+
         tvName.setText("Name: " + lesson.getName());
         tvGrades.setText("Grade: " + lesson.getGrade());
         tvCount.setText("Student Count: " + lesson.getStudent_count());
-        tvDate.setText("Date: " + lesson.getDate());
+        tvDate.setText("Date: " + date);
 
         return view;
     }

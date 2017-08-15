@@ -35,7 +35,7 @@ public class Database extends SQLiteOpenHelper {
                 "name VARCHAR(50), " +
                 "comments VARCHAR(255), " +
                 "grade VARCHAR(10), " +
-                "date DATE, " +
+                "date VARCHAR(20), " +
                 "student_count INTEGER, " +
                 "FOREIGN KEY(user_id) REFERENCES user(id));";
         Constants.printLog("Create lesson table: " + sqlCommand);

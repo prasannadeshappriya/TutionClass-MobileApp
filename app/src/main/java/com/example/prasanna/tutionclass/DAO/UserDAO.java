@@ -46,6 +46,7 @@ public class UserDAO extends DAO {
         User user = null;
         if(c.moveToFirst()) {
             user = new User(
+                    Long.parseLong(c.getString(c.getColumnIndex("id"))),
                     c.getString(c.getColumnIndex("name")),
                     c.getString(c.getColumnIndex("email")),
                     c.getString(c.getColumnIndex("password"))
@@ -80,6 +81,7 @@ public class UserDAO extends DAO {
         User user = null;
         if(c.moveToFirst()) {
             user = new User(
+                    Long.parseLong(c.getString(c.getColumnIndex("id"))),
                     c.getString(c.getColumnIndex("name")),
                     c.getString(c.getColumnIndex("email")),
                     c.getString(c.getColumnIndex("password"))

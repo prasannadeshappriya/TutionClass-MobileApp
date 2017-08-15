@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent i = new Intent(this, HomeActivity.class);
             i.putExtra("user_email", user.getEmail());
             i.putExtra("user_name", user.getName());
+            i.putExtra("user_id", String.valueOf(user.getId()));
             startActivity(i);
             overridePendingTransition(android.R.anim.slide_in_left,
                     android.R.anim.slide_out_right);
@@ -91,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent i = new Intent(this, HomeActivity.class);
             i.putExtra("user_email", user.getEmail());
             i.putExtra("user_name", user.getName());
+            i.putExtra("user_id", String.valueOf(user.getId()));
             startActivity(i);
             overridePendingTransition(android.R.anim.slide_in_left,
                     android.R.anim.slide_out_right);

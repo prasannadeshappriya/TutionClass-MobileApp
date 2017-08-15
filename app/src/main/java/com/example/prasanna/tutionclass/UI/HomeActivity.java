@@ -28,6 +28,7 @@ public class HomeActivity extends AppCompatActivity
     private TextView tvUsername;
     private String email;
     private String user_name;
+    private String user_id;
     private NavigationView navigationView;
     private UserDAO user_dao;
     private Toolbar toolbar;
@@ -61,6 +62,7 @@ public class HomeActivity extends AppCompatActivity
         if(extras != null) {
             email = extras.getString("user_email");
             user_name = extras.getString("user_name");
+            user_id = extras.getString("user_id");
             tvEmail.setText(email);
             tvUsername.setText(user_name);
         }
@@ -126,6 +128,7 @@ public class HomeActivity extends AppCompatActivity
 
     public void showHomeFragment(){
         HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setUserDetails(email, user_name, user_id);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frmMain, homeFragment);
         transaction.setCustomAnimations(android.R.anim.slide_in_left,
