@@ -18,6 +18,7 @@ public abstract class Constants {
     public static final int DATABASE_VERSION = 1;
     public static final String USER_TABLE_NAME = "user";
     public static final String LESSON_TABLE_NAME = "lesson";
+    public static final String FEEDBACK_TABLE_NAME = "feedback";
 
     //Debug
     public static final String TAG = "TutionClass";
