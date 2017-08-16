@@ -12,6 +12,8 @@
     <!--<color name="secondary_text">#757575</color>-->
     <!--<color name="icons">#FFFFFF</color>-->
     <!--<color name="divider">#BDBDBD</color>-->
+    <color name="hignlight_color">#009688</color>
+
     <color name="light_blue">#27AAD4</color>
     <color name="primary">#0A8F72</color>
     <color name="primary_dark">#303F9F</color>

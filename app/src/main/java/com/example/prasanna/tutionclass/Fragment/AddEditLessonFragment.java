@@ -98,7 +98,6 @@ public class AddEditLessonFragment extends Fragment {
                 comment = etComments.getText().toString();
             }
 
-            int student_count = Integer.parseInt(etStuCount.getText().toString());
             String grade = etGrade.getText().toString();
 
             if(isEditData){
@@ -112,7 +111,7 @@ public class AddEditLessonFragment extends Fragment {
                         lesson_name,
                         comment,
                         grade,
-                        student_count,
+                        10,
                         date
                 ));
                 showHomeFragment();
@@ -142,10 +141,6 @@ public class AddEditLessonFragment extends Fragment {
     public boolean validate(){
         if(etName.getText().toString().replace(" ","").equals("")){
             showToastError("Lesson name is required");
-            return false;
-        }
-        if(etStuCount.getText().toString().replace(" ","").equals("")){
-            showToastError("Student count is required");
             return false;
         }
         if(etGrade.getText().toString().replace(" ","").equals("")){

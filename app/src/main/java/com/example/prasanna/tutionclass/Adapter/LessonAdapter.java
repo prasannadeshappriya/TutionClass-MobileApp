@@ -56,7 +56,7 @@ public class LessonAdapter extends BaseAdapter {
                 Constants.MONTH_LIST.get(Integer.parseInt(dateArr[1])) + "-" +
                 dateArr[2];
 
-        tvName.setText("Name: " + lesson.getName());
+        tvName.setText(lesson.getName());
         tvGrades.setText("Grade: " + lesson.getGrade());
         tvCount.setText("Student Count: " + lesson.getStudent_count());
         tvDate.setText("Date: " + date);
