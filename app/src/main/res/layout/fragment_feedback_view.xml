@@ -144,6 +144,7 @@
             android:layout_width="match_parent"
             android:layout_marginTop="10dip"
             android:paddingTop="15dip"
+            android:paddingLeft="10dip"
             android:paddingBottom="15dip"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_border">
@@ -152,36 +153,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name: Mathematics"
-                android:id="@+id/tvFedName"
-                android:textAlignment="center"/>
+                android:id="@+id/tvFedName"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvFedName"
                 android:text="Date: 2017-August-17"
-                android:id="@+id/tvFedDate"
-                android:textAlignment="center"/>
+                android:id="@+id/tvFedDate"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvFedDate"
                 android:text="Comments: this is the final class"
-                android:id="@+id/tvFedComments"
-                android:textAlignment="center"/>
+                android:id="@+id/tvFedComments"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvFedComments"
+                android:visibility="gone"
                 android:text="Number of Students: 24"
-                android:id="@+id/tvFedNumDates"
-                android:textAlignment="center"/>
+                android:id="@+id/tvFedNumDates"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvFedNumDates"
                 android:text="Grade: 6B"
-                android:id="@+id/tvFedGrade"
-                android:textAlignment="center"/>
+                android:id="@+id/tvFedGrade"/>
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

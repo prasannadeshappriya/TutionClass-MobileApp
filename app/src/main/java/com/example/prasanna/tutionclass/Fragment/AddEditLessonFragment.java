@@ -152,6 +152,8 @@ public class AddEditLessonFragment extends Fragment {
 
     private void showHomeFragment(){
         HomeFragment homeFragment = new HomeFragment();
+        int month = dpPicker.getMonth();
+        homeFragment.setMonth_change(true, month);
         homeFragment.setUserDetails(email, user_name, user_id);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(android.R.anim.slide_in_left,

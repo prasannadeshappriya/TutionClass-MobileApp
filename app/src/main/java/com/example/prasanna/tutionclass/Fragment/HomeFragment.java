@@ -38,11 +38,17 @@ public class HomeFragment extends Fragment {
     private Spinner spiHomeMonth;
     private Spinner spiHomeYear;
     private ArrayList<Lesson> arrLesson;
+    private boolean month_change = false;
+    private int month;
 
     public void setUserDetails(String email, String user_name, String user_id) {
         this.email = email;
         this.user_name = user_name;
         this.user_id = user_id;
+    }
+
+    public void setMonth_change(boolean flag, int month){
+        month_change = flag; this.month = month;
     }
 
     @Nullable
@@ -52,6 +58,11 @@ public class HomeFragment extends Fragment {
         //init variables
         init(view);
         initArrayList();
+
+        if(month_change){
+            spiHomeMonth.setSelection(month+1);
+            month_change = false;
+        }
 
         btnAddLesson.setOnClickListener(
                 new View.OnClickListener() {
