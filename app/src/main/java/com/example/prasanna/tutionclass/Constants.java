@@ -19,6 +19,7 @@ public abstract class Constants {
     public static final String USER_TABLE_NAME = "user";
     public static final String LESSON_TABLE_NAME = "lesson";
     public static final String FEEDBACK_TABLE_NAME = "feedback";
+    public static final String LOGIN_HISTORY_TABLE_NAME = "login_history";
 
     //Debug
     public static final String TAG = "TutionClass";

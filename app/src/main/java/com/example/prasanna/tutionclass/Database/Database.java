@@ -50,6 +50,12 @@ public class Database extends SQLiteOpenHelper {
                 "FOREIGN KEY(lesson_id) REFERENCES lesson(id));";
         Constants.printLog("Create lesson table: " + sqlCommand);
         db.execSQL(sqlCommand);
+
+        sqlCommand = "CREATE TABLE IF NOT EXISTS login_history (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "email VARCHAR(100));";
+        Constants.printLog("Create login_history table: " + sqlCommand);
+        db.execSQL(sqlCommand);
     }
 
     @Override

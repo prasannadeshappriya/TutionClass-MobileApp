@@ -10,6 +10,8 @@ import com.example.prasanna.tutionclass.Models.User;
 import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
 
+import static com.example.prasanna.tutionclass.Constants.printLog;
+
 /**
  * Created by prasanna on 8/13/17.
  */
@@ -26,7 +28,7 @@ public class UserDAO extends DAO {
 
     public boolean isUserExist(String email){
         command = "SELECT * FROM " + tableName + " WHERE email=\"" + email + "\";";
-        Constants.printLog("Check user: " + email + " exist, " + command);
+        printLog("Check user: " + email + " exist, " + command);
         Cursor c = sqldb.rawQuery(command,null);
         if(c.getCount()>0){
             c.close();
@@ -39,10 +41,10 @@ public class UserDAO extends DAO {
 
     public User getLoginUser(){
         command = "SELECT * FROM " + tableName + " WHERE login_status=1;";
-        Constants.printLog("Get all users with login_status=1");
-        Constants.printLog(command);
+        printLog("Get all users with login_status=1");
+        printLog(command);
         Cursor c = sqldb.rawQuery(command,null);
-        Constants.printLog("Cursor result count: " + c.getCount());
+        printLog("Cursor result count: " + c.getCount());
         User user = null;
         if(c.moveToFirst()) {
             user = new User(
@@ -58,25 +60,25 @@ public class UserDAO extends DAO {
     public void setLoginStatusFlag(Boolean flag, String email){
         if(flag){
             command = "UPDATE " + tableName + " SET login_status=0;";
-            Constants.printLog("Update and reset login_status flag for all users");
-            Constants.printLog(command);
+            printLog("Update and reset login_status flag for all users");
+            printLog(command);
             sqldb.execSQL(command);
             command = "UPDATE " + tableName + " SET login_status=1 WHERE email=\"" + email + "\";";
-            Constants.printLog("Update and set login_status flag true for users: " + email);
-            Constants.printLog(command);
+            printLog("Update and set login_status flag true for users: " + email);
+            printLog(command);
             sqldb.execSQL(command);
         }else{
             command = "UPDATE " + tableName + " SET login_status=0;";
-            Constants.printLog("Update and reset login_status flag for all users");
+            printLog("Update and reset login_status flag for all users");
             sqldb.execSQL(command);
         }
     }
 
     public User UserAuth(String email, String password){
         command = "SELECT * FROM " + tableName + " WHERE email=\"" + email + "\" AND password=\"" + password + "\";";
-        Constants.printLog("Check for user with email: " + email +", password: "+password);
+        printLog("Check for user with email: " + email +", password: "+password);
         Cursor c = sqldb.rawQuery(command,null);
-        Constants.printLog("Cursor result count: "+c.getCount());
+        printLog("Cursor result count: "+c.getCount());
 
         User user = null;
         if(c.moveToFirst()) {
@@ -90,6 +92,22 @@ public class UserDAO extends DAO {
         return user;
     }
 
+    public ArrayList<String> getAllUserEmails(){
+        command = "SELECT email FROM " + tableName + " WHERE 1;";
+        printLog("Select all user emails");
+        printLog(command);
+        Cursor c = sqldb.rawQuery(command,null);
+        printLog("Cursor count: " + c.getCount());
+
+        ArrayList<String> arrEmails = new ArrayList<>();
+        if(c.moveToFirst()) {
+            do {
+                arrEmails.add(c.getString(c.getColumnIndex("email")));
+            } while (c.moveToNext());
+        }
+        return arrEmails;
+    }
+
     public void addUser(User user){
         ContentValues contentValues = new ContentValues();
         contentValues.put("name",user.getName());
@@ -100,6 +118,6 @@ public class UserDAO extends DAO {
                 null,
                 contentValues
         );
-        Constants.printLog("User successfully inserted");
+        printLog("User successfully inserted");
     }
 }
