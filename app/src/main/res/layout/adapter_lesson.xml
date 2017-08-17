@@ -6,13 +6,21 @@
     android:paddingBottom="50px"
     android:background="@drawable/frame_border">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvName"
-        android:textSize="20dip"
-        android:layout_marginLeft="25dip"
-        android:text="Statistics"/>
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingLeft="50px"
+        android:paddingRight="50px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Statistics"
+            android:textSize="20dip" />
+        </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

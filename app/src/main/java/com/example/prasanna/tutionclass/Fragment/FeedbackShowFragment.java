@@ -1,5 +1,6 @@
 package com.example.prasanna.tutionclass.Fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 
 import com.example.prasanna.tutionclass.DAO.FeedbackDAO;
@@ -43,12 +45,24 @@ public class FeedbackShowFragment extends Fragment {
         this.lesson = lesson;
     }
 
+    private void closeKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = getActivity().getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(getActivity());
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feedback_show, container, false);
         //Initialize variables
         init(view);
+        closeKeyboard();
 
         btnHappyVote.setOnClickListener(
                 new View.OnClickListener() {

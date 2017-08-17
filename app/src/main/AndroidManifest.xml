@@ -9,18 +9,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Dark"
         android:screenOrientation="portrait">
-        <activity android:name=".UI.LoginActivity">
+        <activity android:name=".UI.LoginActivity"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.SignUpActivity" />
+        <activity android:name=".UI.SignUpActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".UI.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:theme="@style/AppTheme.Dark"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>
